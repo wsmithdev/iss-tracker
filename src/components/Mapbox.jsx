@@ -10,13 +10,6 @@ function Mapbox(props) {
     iconSize: [70, 70],
   });
 
-  // Unit change handler
-  // const unitChangeHandler = (e) => {
-  //   let unit = e.target.value;
-  //   console.log(unit);
-  //   updateUnits(unit);
-  // };
-
   return (
     <>
       <Map
@@ -48,27 +41,6 @@ function Mapbox(props) {
           </Popup>
         </Marker>
       </Map>
-      {/* <label>
-      <input
-        onChange={unitChangeHandler}
-        type="radio"
-        name="units"
-        value="kilometers"
-        checked={units === 'kilometers'}
-      />
-      Metric Units
-      </label>
-      <br/>
-      <label>
-      <input
-        onChange={unitChangeHandler}
-        type="radio"
-        name="units"
-        value="miles"
-        checked={units === 'miles'}
-      />
-      Imperial Units
-      </label> */}
     </>
   );
 }

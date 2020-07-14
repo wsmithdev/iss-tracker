@@ -25,7 +25,7 @@ function Infobox(props) {
     if (!lgn || !lat) {
       return;
     } else {
-      let URL = `http://www.n2yo.com/rest/v1/satellite/visualpasses/25544/${lat}/${lgn}/0/10/300/&apiKey=LYFLJY-PTWWYL-XKV96K-4HKF`;
+      let URL = `https://www.n2yo.com/rest/v1/satellite/visualpasses/25544/${lat}/${lgn}/0/10/300/&apiKey=LYFLJY-PTWWYL-XKV96K-4HKF`;
       fetch(URL)
         .then((response) => response.json())
         .then((data) => {
@@ -37,7 +37,7 @@ function Infobox(props) {
   };
 
   const getNames = () => {
-    fetch("http://api.open-notify.org/astros.json")
+    fetch("https://api.open-notify.org/astros.json")
       .then((response) => response.json())
       .then((data) => {
         updateCrewMembers(data.people);
