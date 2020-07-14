@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Switch from "react-switch";
 
 function Infobox(props) {
   // State
@@ -6,6 +7,7 @@ function Infobox(props) {
   const [lat, updateLat] = useState();
   const [passData, updatePassData] = useState();
   const [crewMembers, updateCrewMembers] = useState([]);
+  const [toggle, setToggle] = useState(false);
 
   // Functions
   //
@@ -24,7 +26,6 @@ function Infobox(props) {
       return;
     } else {
       let URL = `http://www.n2yo.com/rest/v1/satellite/visualpasses/25544/${lat}/${lgn}/0/10/300/&apiKey=LYFLJY-PTWWYL-XKV96K-4HKF`;
-      console.log(URL);
       fetch(URL)
         .then((response) => response.json())
         .then((data) => {
@@ -40,18 +41,24 @@ function Infobox(props) {
       .then((response) => response.json())
       .then((data) => {
         updateCrewMembers(data.people);
-        console.log(data.people);
       });
   };
 
   useEffect(() => {
     getLocation();
     getNames();
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
     getPasses();
+    // eslint-disable-next-line
   }, [lgn, lat]);
+
+  useEffect(() => {
+    props.unitToggle();
+    // eslint-disable-next-line
+  }, [toggle]);
 
   return (
     <div className="info">
@@ -72,15 +79,36 @@ function Infobox(props) {
         <span>Lng: {props.data.longitude.toFixed(5)}</span>
         <br />
         <span>Next Visible Pass: {passData ? passData : "Loading..."}</span>
-        <br />
-        <br />
-        <span>Crew Onboard:</span>
-        <ol>
-          {crewMembers.map(function (item, i) {
-            return <li>{item.name}</li>;
-          })}
-        </ol>
       </p>
+      <div className="toggle-switch">
+        <label htmlFor="material-switch">
+          Imperial
+          <Switch
+            checked={toggle}
+            onChange={() => setToggle(!toggle)}
+            onColor="#fff"
+            onHandleColor="#A0A0A0"
+            offColor="#fff"
+            offHandleColor="#A0A0A0"
+            handleDiameter={20}
+            uncheckedIcon={false}
+            checkedIcon={false}
+            boxShadow="0px 1px 5px rgba(0, 0, 0, 0.6)"
+            activeBoxShadow="0px 0px 1px 10px rgba(0, 0, 0, 0.2)"
+            height={15}
+            width={35}
+            className="react-switch"
+            id="material-switch"
+          />
+          Metric
+        </label>
+      </div>
+      <span>Crew Onboard:</span>
+      <ol>
+        {crewMembers.map(function (item, i) {
+          return <li key={i}>{item.name}</li>;
+        })}
+      </ol>
     </div>
   );
 }

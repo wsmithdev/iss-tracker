@@ -7,28 +7,23 @@ function App() {
   // useState
   const [units, updateUnits] = useState("kilometers");
   const [data, updataData] = useState({
-    name: "iss",
-    id: 25544,
     latitude: 0.0,
     longitude: 0.0,
     altitude: 0.0,
     velocity: 0.0,
-    visibility: "daylight",
-    footprint: 0.0,
-    timestamp: 0,
-    daynum: 0.0,
-    solar_lat: 0.0,
-    solar_lon: 0.0,
     units: "kilometers",
   });
-  const [counter, updateCounter] = useState();
+  const [counter, updateCounter] = useState(0);
+  const [muteImage, updateMuteImage] = useState(
+    "https://img.icons8.com/flat_round/64/000000/mute.png"
+  );
+
 
   // Function
   //
   // API call to retrieve ISS position
   const getData = () => {
     let URL = `https://api.wheretheiss.at/v1/satellites/25544/?units=${units}`;
-    console.log(URL);
     fetch(URL)
       .then((response) => response.json())
       .then((data) => {
@@ -38,11 +33,13 @@ function App() {
   // Called every time interval counter updates or when units change
   useEffect(() => {
     getData();
+    // eslint-disable-next-line
   }, [counter, units]);
 
   // Called once on page load to start interval counter
   useEffect(() => {
     interval();
+    // eslint-disable-next-line
   }, []);
 
   // Interval counter to trigger API fetch
@@ -55,6 +52,40 @@ function App() {
     }, 5000);
   };
 
+  // Unit toggle
+  const unitToggle = () => {
+    if (units === "kilometers") {
+      updateUnits("miles");
+    } else {
+      updateUnits("kilometers");
+    }
+  };
+
+  // Background audio
+  const audioFile = document.querySelector("#audioFile");
+  // Audio mute toggle
+  const mute = () => {
+    if (audioFile.muted) {
+      audioFile.muted = false;
+      updateMuteImage("https://img.icons8.com/flat_round/64/000000/mute.png");
+    } else {
+      audioFile.muted = true;
+      updateMuteImage(
+        "https://img.icons8.com/flat_round/64/000000/low-volume--v1.png"
+      );
+    }
+  };
+  // Audio play
+  const play = () => {
+
+    audioFile.play();
+   
+  };
+
+  const showData = () => {
+    console.log(audioFile)
+  }
+
 
   return (
     <>
@@ -63,16 +94,19 @@ function App() {
           <h1>I.S.S Tracker</h1>
         </div>
         <div className="info-container">
-          <Infobox data={data} />
+          <Infobox data={data} unitToggle={unitToggle} />
         </div>
         <div className="map-container">
           <Mapbox data={data} />
         </div>
         <div className="spacer"></div>
-        <div className="mute-btn" >
-          <img src="https://img.icons8.com/flat_round/64/000000/mute.png" />
+        <div className="mute-btn">
+          <img src={muteImage} alt="mute button" onClick={mute} />
+          <button onClick={play} >play</button>
+          <button onClick={showData} >data</button>
         </div>
       </div>
+      <audio  autoPlay={true} id="audioFile" src="/audio.mp3"/>
     </>
   );
 }

@@ -1,6 +1,5 @@
 import React from "react";
 import { Map, TileLayer, Marker, Popup } from "react-leaflet";
-import "./styles/mapBoxStyle.css";
 import Leaf from "leaflet";
 
 function Mapbox(props) {
@@ -24,6 +23,11 @@ function Mapbox(props) {
         id="map"
         center={[props.data.latitude, props.data.longitude]}
         zoom="1.5"
+        style={{
+          height: "100%",
+          width: "100%",
+          border: "5px solid white"
+        }}
       >
         <TileLayer
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
