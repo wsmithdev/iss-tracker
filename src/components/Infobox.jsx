@@ -37,7 +37,7 @@ function Infobox(props) {
   };
 
   const getNames = () => {
-    fetch("https://api.open-notify.org/astros.json")
+    fetch("http://api.open-notify.org/astros.json")
       .then((response) => response.json())
       .then((data) => {
         updateCrewMembers(data.people);
