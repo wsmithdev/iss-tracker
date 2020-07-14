@@ -41,7 +41,7 @@ function Infobox(props) {
       .then((response) => response.json())
       .then((data) => {
         updateCrewMembers(data.people);
-      });
+      }).catch(error => console.log(error));
   };
 
   useEffect(() => {
