@@ -39,7 +39,7 @@ body {
   background-color: rgba(0, 0, 0, 0.7);
 }
 #heading h1 {
-  font-size: 5rem;
+  font-size: 4rem;
   color: whitesmoke;
 }
 /* End Heading */
@@ -48,7 +48,6 @@ body {
 .info-container {
   width: 96vw;
   max-height: 32rem;
-
   border: 1px solid white;
   margin: 2rem 0;
   background-color: rgba(0, 0, 0, 0.7);
@@ -56,15 +55,15 @@ body {
 }
 .info-container .info h2 {
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 2rem;
   margin: 1.5rem 0;
 }
 .info-container .info span {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   margin-left: 2rem;
 }
 .info-container .info li {
-  font-size: 1.6rem;
+  font-size: 1.4rem;
   margin-left: 2rem;
 }
 /* End Info  */
@@ -103,9 +102,15 @@ body {
   html {
     font-size: 12px;
   }
+  #heading h1 {
+    font-size: 5.5rem;
+  }
   .info-container {
     width: 60vw;
     height: auto;
+  }
+  .info-container .info h2 {
+    font-size: 2.5rem;
   }
   .map-container {
     width: 90vw;

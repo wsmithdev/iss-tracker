@@ -32,7 +32,8 @@ function Infobox(props) {
           const startUnix = data.passes[0].startUTC;
           const passDate = new Date(startUnix * 1000);
           updatePassData(passDate.toString().slice(0, 24));
-        });
+        })
+        .catch(err => console.log(err))
     }
   };
 
@@ -103,7 +104,7 @@ function Infobox(props) {
           Metric
         </label>
       </div>
-      <span>Crew Onboard:</span>
+      <span>{crewMembers.length > 0 ? 'Crew Onbaord:' : ' '}</span>
       <ol>
         {crewMembers.map(function (item, i) {
           return <li key={i}>{item.name}</li>;

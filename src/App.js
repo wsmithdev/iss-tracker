@@ -75,23 +75,12 @@ function App() {
       );
     }
   };
-  // Audio play
-  const play = () => {
-
-    audioFile.play();
-   
-  };
-
-  const showData = () => {
-    console.log(audioFile)
-  }
-
 
   return (
     <>
       <div className="container">
         <div id="heading">
-          <h1>I.S.S Tracker</h1>
+          <h1>ISS Tracker</h1>
         </div>
         <div className="info-container">
           <Infobox data={data} unitToggle={unitToggle} />
@@ -102,8 +91,6 @@ function App() {
         <div className="spacer"></div>
         <div className="mute-btn">
           <img src={muteImage} alt="mute button" onClick={mute} />
-          <button onClick={play} >play</button>
-          <button onClick={showData} >data</button>
         </div>
       </div>
       <audio  autoPlay={true} id="audioFile" src="/audio.mp3"/>
