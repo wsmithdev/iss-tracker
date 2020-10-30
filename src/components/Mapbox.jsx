@@ -19,12 +19,13 @@ function Mapbox(props) {
         style={{
           height: "100%",
           width: "100%",
-          border: "5px solid white"
+          border: "5px solid white",
         }}
       >
+        
         <TileLayer
           attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-          url="https://api.tiles.mapbox.com/v4/mapbox.streets/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibGVuaGF0dGVyIiwiYSI6ImNqemQ0MXN0eTAyeTkzZHF0N2hrYXJ0OXAifQ.B1CbsLP5XDiqxf76mLG0EA"
+          url="https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoid2lsbHNtaXRoMTUwNSIsImEiOiJja2d2cHQxOGswMm9kMndwaXdsN2QwM2FlIn0.DPXuIqGl5Sr4-2og3O6hlw"
         />
         <Marker
           center={[props.data.latitude, props.data.longitude]}
@@ -34,9 +35,11 @@ function Mapbox(props) {
           <Popup>
             <h4>Current Position:</h4>
             <p>
-              Latitude: {props.data.latitude ? props.data.latitude : ""}
+              Latitude:{" "}
+              {props.data.latitude ? props.data.latitude.toFixed(5) : ""}
               <br />
-              Longitude: {props.data.longitude ? props.data.longitude : ""}
+              Longitude:{" "}
+              {props.data.longitude ? props.data.longitude.toFixed(5) : ""}
             </p>
           </Popup>
         </Marker>

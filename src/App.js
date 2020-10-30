@@ -14,10 +14,6 @@ function App() {
     units: "kilometers",
   });
   const [counter, updateCounter] = useState(0);
-  const [muteImage, updateMuteImage] = useState(
-    "https://img.icons8.com/flat_round/64/000000/mute.png"
-  );
-
 
   // Function
   //
@@ -61,21 +57,6 @@ function App() {
     }
   };
 
-  // Background audio
-  const audioFile = document.querySelector("#audioFile");
-  // Audio mute toggle
-  const mute = () => {
-    if (audioFile.muted) {
-      audioFile.muted = false;
-      updateMuteImage("https://img.icons8.com/flat_round/64/000000/mute.png");
-    } else {
-      audioFile.muted = true;
-      updateMuteImage(
-        "https://img.icons8.com/flat_round/64/000000/low-volume--v1.png"
-      );
-    }
-  };
-
   return (
     <>
       <div className="container">
@@ -89,11 +70,8 @@ function App() {
           <Mapbox data={data} />
         </div>
         <div className="spacer"></div>
-        <div className="mute-btn">
-          <img src={muteImage} alt="mute button" onClick={mute} />
-        </div>
       </div>
-      <audio  autoPlay={true} id="audioFile" src="/audio.mp3"/>
+     
     </>
   );
 }

@@ -33,9 +33,12 @@ function Infobox(props) {
           const passDate = new Date(startUnix * 1000);
           updatePassData(passDate.toString().slice(0, 24));
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+          console.log(err);
+        })
     }
   };
+
 
   const getNames = () => {
     fetch("http://api.open-notify.org/astros.json")
@@ -79,7 +82,7 @@ function Infobox(props) {
         <br />
         <span>Lng: {props.data.longitude.toFixed(5)}</span>
         <br />
-        <span>Next Visible Pass: {passData ? passData : "Loading..."}</span>
+        <span>Next Visible Pass: {passData ? passData : 'Loading...'}</span>
       </p>
       <div className="toggle-switch">
         <label htmlFor="material-switch">
@@ -104,7 +107,7 @@ function Infobox(props) {
           Metric
         </label>
       </div>
-      <span>{crewMembers.length > 0 ? 'Crew Onbaord:' : ' '}</span>
+      <span>{crewMembers.length > 0 ? 'Crew Onboard:' : ' '}</span>
       <ol>
         {crewMembers.map(function (item, i) {
           return <li key={i}>{item.name}</li>;
